@@ -1,0 +1,103 @@
+<!-- Your platform (jquery) scripts. -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+body {
+	background-color: #fff;
+}
+.my-rating {
+	font-size: 12px;
+}
+.sv_q_radiogroup_control_label{
+	color:black;
+}
+.card {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+	padding: 2px 16px;
+}
+.panel-footer{
+	background-color:"white" !important;
+	border-top:none;
+}
+h3{
+	background-color:rgb(26,179,148);
+	padding:3em;
+	display:block;
+}
+h3 span{
+	color: white
+}
+.form-group .checkbox label{
+	color:black !important;
+}
+</style>
+<title>Bootstrap Material theme, jQuery Survey Library Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/jquery"></script>
+<script src="https://surveyjs.azureedge.net/1.0.95/survey.jquery.js"></script>
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+<script src="https://unpkg.com/bootstrap-material-design@0.5.10/dist/js/material.js"></script>
+<script src="https://unpkg.com/bootstrap-material-design@0.5.10/dist/js/ripples.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@0.5.10/dist/css/bootstrap-material-design.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@0.5.10/dist/css/ripples.css">
+
+</head>
+<body>
+<div class="container">
+	<div class="card">
+			  <h3 style="margin-top:0px"><!-- ko template: { name: 'survey-string', data: locTitle } -->
+				      <!-- ko ifnot: koHasHtml -->
+					  <span style="position: static;" data-bind="text: koRenderedHtml">Questionário - Impactos da Esclerose Múltipla no ambiente ocupacional</span>
+					      <!-- /ko -->
+						  <!-- ko if: koHasHtml --><!-- /ko -->
+								  <!-- /ko --></h3>
+	<div id="surveyElement">
+	</div>
+	</div>
+	<div id="surveyResult"></div>
+
+</div>
+
+
+
+<script>
+$.material.init();
+
+Survey.defaultBootstrapMaterialCss.navigationButton = "btn btn-green";
+Survey.defaultBootstrapMaterialCss.rating.item = "btn btn-default my-rating";
+Survey.StylesManager.applyTheme("bootstrapmaterial");
+
+
+var surveyJSON = {"locale":"pt","pages":[{"name":"page1","elements":[{"type":"html","name":"Titulo","html":"<div class='container-fluid'><div class='row'><div class='col-2'><img style='width:22vw'src='https://bucket-gw-cni-static-cms-si.s3.amazonaws.com/media/filer_public_thumbnails/filer_public/41/d2/41d28cad-5b7d-4d5d-84e8-2bc26a5ee3b7/thumb-lista-canais.jpg__380x213_q85_subsampling-2.jpg' alt='CIS'></div><div class='col'></div><div class='col-8'><h2> <bold> Olá, </bold> </h2><p>Nós do Centro de Inovação SESI em Higiene Ocupacional (CIS-HO) estamos realizando um estudo para avaliar como a sua Esclerose Múltipla afetou a forma como você trabalha ou trabalhava antes do seu diagnóstico.Trata-se de uma pesquisa que irá mapear as experiências da pessoa co    m Esclerose Múltipla no ambiente de trabalho a fim de compreender quais são as dificuldades que vocês passaram ou passam para continuar trabalhando de maneira adequada.</p>\n\n<p> Antes, gostaríamos de fazer algumas perguntas sobre você :</p></div></div></div></div>"},{"type":"radiogroup","name":"question 1","title":"Qual o seu sexo?","choices":[{"value":"item1","text":"Masculino"},{"value":"item2","text":"Feminino"}]},{"type":"radiogroup","name":"question1","title":"Qual é sua faixa etária","choices":[{"value":"item1","text":"Entre 18 e 25 anos"},{"value":"item2","text":"Entre 26 e 35 anos"},{"value":"item3","text":"Entre 36 e 45 anos"},{"value":"item4","text":"Entre 46 e 55 anos"},{"value":"item5","text":"Entre 56 e 65 anos"},{"value":"item7","text":"Maior que 65 anos"}]},{"type":"radiogroup","name":"question2","title":"Há quanto tempo você convive com a Esclerose Múltipla","choices":[{"value":"item1","text":"Há menos de um ano"},{"value":"item4","text":"Entre um e três anos"},{"value":"item5","text":"Entre três e cinco anos"},{"value":"item3","text":"Há mais de cinco anos"}],"otherText":"Entre um e três anos"}]},{"name":"page2","elements":[{"type":"html","name":"Titulo 2","html":"<div class='alert alert-dark' role='alert'><p> Agora, gostaríamos de entender como a Esclerose Múltipla impacta na sua vida. </p></div>"},{"type":"checkbox","name":"question4","title":"Quais são os sintomas que mais te afetam","hasOther":true,"choices":[{"value":"item1","text":"Fadiga ou Fraqueza"},{"value":"item2","text":"Alterações na visão"},{"value":"item3","text":"Dores ou espasmos"},{"value":"item4","text":"Problemas de equilíbrio"},{"value":"item5","text":"Problemas de memória ou raciocínio"},{"value":"item6","text":"Problemas de incontinência ou constipação"}]},{"type":"comment","name":"question3","title":"Quais são as suas maiores dificuldades em conviver com a Esclerose Múltipla?"},{"type":"checkbox","name":"question5","title":"Você usa alguma tecnologia assistiva (muletas, bengalas, cadeiras de rodas, cadeiras motorizadas, etc)","hasOther":true,"choices":[{"value":"item1","text":"Bengala"},{"value":"item2","text":"Muleta"},{"value":"item3","text":"Cadeira de roda"},{"value":"item4","text":"Cadeira motorizada"}]},{"type":"radiogroup","name":"question6","title":"Existe alguém que o ajude para a manutenção de sua rotina? ","choices":[{"value":"item1","text":"Sim"},{"value":"item2","text":"Não"}]},{"type":"rating","name":"question7","title":"O quão autônomo você se considera? (1: preciso de muita ajuda, 3: preciso de alguma ajuda, 5: não preciso de ajuda)"},{"type":"comment","name":"question8","title":"Na sua opinião, qual a impressão que as pessoas possuem da pessoa com Esclerose Múltipla?"}]},{"name":"page3","elements":[{"type":"text","name":"question9","title":"Em que área você trabalhava no momento do diagnóstico?"},{"type":"radiogroup","name":"question10","title":"Você está empregado hoje em dia?","choices":[{"value":"item1","text":"Sim"},{"value":"item2","text":"Não"}]},{"type":"comment","name":"question12","visibleIf":"{question10} = \"item1\"","title":"Se sim, como você precisou alterar sua rotina de trabalho?"},{"type":"comment","name":"question14","visibleIf":"{question10} = \"item2\"","title":"Se não, quais foram os motivos de sua saída?"},{"type":"comment","name":"question11","visibleIf":"{question10} = \"item1\"","title":"Se você está empregado, o que facilitaria sua rotina de trabalho?"},{"type":"comment","name":"question15","visibleIf":"{question10} = \"item2\"","title":"Se você está desempregado, o que facilitaria seu retorno à rotina de trabalho?"},{"type":"radiogroup","name":"question16","visibleIf":"{question10} = \"item2\"","title":"Você deseja voltar a trabalhar?","choices":[{"value":"item1","text":"Sim"},{"value":"item2","text":"Não"}]},{"type":"radiogroup","name":"question13","visibleIf":"{question10} = \"item1\"","title":"Você deseja continuar trabalhando?","choices":[{"value":"item1","text":"Sim"},{"value":"item2","text":"Não"}]}]}],"cookieName":"emquestionario"}
+
+window.survey = new Survey.Model(surveyJSON);
+
+
+function sendDataToServer(survey) {
+	//send Ajax request to your web server.
+	alert("The results are:" + JSON.stringify(survey.data));
+}
+
+var survey = new Survey.Model(surveyJSON);
+$("#surveyElement").Survey({
+model: survey,
+onComplete: sendDataToServer
+});
+</script>
+</body>
+</HTML>
